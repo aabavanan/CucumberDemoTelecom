@@ -1,6 +1,7 @@
 package com.telecom.stepdefinition;
 
 import java.util.List;
+import java.util.Map;
 
 import org.junit.Assert;
 import org.openqa.selenium.By;
@@ -82,6 +83,55 @@ public class AddCustomerSteps {
 		d.findElement(By.id("telephoneno")).sendKeys(dimlist.get(4));
 		
 		
+	}
+	
+	@When("Enter the customer fields in 1dimensional map")
+	public void enter_the_customer_fields_in_1dimensional_map(io.cucumber.datatable.DataTable dataTable) throws InterruptedException{
+		
+		Thread.sleep(2000);
+		
+		Map<String, String> asMap = dataTable.asMap(String.class, String.class);
+		
+		d.findElement(By.xpath("(//label[@for='done'])[1]")).click();
+		d.findElement(By.id("fname")).sendKeys(asMap.get("fname"));
+		d.findElement(By.id("lname")).sendKeys(asMap.get("lname"));
+		d.findElement(By.id("email")).sendKeys(asMap.get("mail"));
+		d.findElement(By.name("addr")).sendKeys(asMap.get("address"));
+		d.findElement(By.id("telephoneno")).sendKeys(asMap.get("phone"));
+		
+		
+	}
+
+	@When("Enter the customer fields in 2dimensional list")
+	public void enter_the_customer_fields_in_2dimensional_list(io.cucumber.datatable.DataTable dataTable) throws InterruptedException{
+		
+		Thread.sleep(2000);
+		
+		List<List<String>> asLists = dataTable.asLists();
+		
+		d.findElement(By.xpath("(//label[@for='done'])[1]")).click();
+		d.findElement(By.id("fname")).sendKeys(asLists.get(1).get(0));
+		d.findElement(By.id("lname")).sendKeys(asLists.get(1).get(1));
+		d.findElement(By.id("email")).sendKeys(asLists.get(1).get(2));
+		d.findElement(By.name("addr")).sendKeys(asLists.get(1).get(3));
+		d.findElement(By.id("telephoneno")).sendKeys(asLists.get(1).get(4));
+		
+		
+	}
+	
+	@When("Enter the customer fields in 2dimensional map")
+	public void enter_the_customer_fields_in_2dimensional_map(io.cucumber.datatable.DataTable dataTable) throws InterruptedException{
+		
+		Thread.sleep(2000);
+		
+		List<Map<String, String>> asMaps = dataTable.asMaps();
+		
+		d.findElement(By.xpath("(//label[@for='done'])[1]")).click();
+		d.findElement(By.id("fname")).sendKeys(asMaps.get(2).get("fname"));
+		d.findElement(By.id("lname")).sendKeys(asMaps.get(2).get("lname"));
+		d.findElement(By.id("email")).sendKeys(asMaps.get(1).get("mail"));
+		d.findElement(By.name("addr")).sendKeys(asMaps.get(3).get("address"));
+		d.findElement(By.id("telephoneno")).sendKeys(asMaps.get(1).get("phone"));
 	}
 
 	@When("Click on submit button")
