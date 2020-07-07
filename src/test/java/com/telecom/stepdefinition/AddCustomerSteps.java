@@ -1,5 +1,7 @@
 package com.telecom.stepdefinition;
 
+import java.util.List;
+
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -23,7 +25,8 @@ public class AddCustomerSteps {
 	}
 
 	@Given("Click on the Add Customer")
-	public void click_on_the_Add_Customer() {
+	public void click_on_the_Add_Customer(){
+		
 		WebElement AddCustomer = d.findElement(By.xpath("//a[text()=\"Add Customer\"][1]"));
 		AddCustomer.click();
 		
@@ -31,6 +34,7 @@ public class AddCustomerSteps {
 
 	@When("Close the Pop up window")
 	public void close_the_Pop_up_window() throws InterruptedException {
+		
 		Thread.sleep(5000);
 		d.switchTo().frame("flow_close_btn_iframe");
 	    WebElement FrameCloseBtn = d.findElement(By.xpath("//div[@id=\"closeBtn\"]"));
@@ -39,7 +43,9 @@ public class AddCustomerSteps {
 	}
 
 	@When("Enter the customer fields")
-	public void enter_the_customer_fields() {
+	public void enter_the_customer_fields() throws InterruptedException {
+		
+		Thread.sleep(2000);
 		
 		WebElement LabelCheckBox = d.findElement(By.xpath("(//label[@for='done'])[1]"));
 		LabelCheckBox.click();
@@ -60,9 +66,26 @@ public class AddCustomerSteps {
 		MobileNum.sendKeys("9952220555");
 		
 	}
+	
+	@When("Enter the customer fields in 1dimensional list")
+	public void enter_the_customer_fields_in_1dimensional_list(io.cucumber.datatable.DataTable dataTable) throws InterruptedException{
+		
+		Thread.sleep(2000);
+		
+		List<String> dimlist = dataTable.asList();
+		
+		d.findElement(By.xpath("(//label[@for='done'])[1]")).click();
+		d.findElement(By.id("fname")).sendKeys(dimlist.get(0));
+		d.findElement(By.id("lname")).sendKeys(dimlist.get(1));
+		d.findElement(By.id("email")).sendKeys(dimlist.get(2));
+		d.findElement(By.name("addr")).sendKeys(dimlist.get(3));
+		d.findElement(By.id("telephoneno")).sendKeys(dimlist.get(4));
+		
+		
+	}
 
 	@When("Click on submit button")
-	public void click_on_submit_button() {
+	public void click_on_submit_button(){
 		
 		WebElement SubmitBtn = d.findElement(By.xpath("(//input[@type='submit'])[1]"));
 		SubmitBtn.click();
