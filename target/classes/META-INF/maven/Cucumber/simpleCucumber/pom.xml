@@ -7,25 +7,33 @@
   	<dependency>
 	    <groupId>io.cucumber</groupId>
 	    <artifactId>cucumber-core</artifactId>
-	    <version>5.5.0</version>
+	    <version>4.2.0</version>
 	</dependency>
 	
 	<dependency>
 	    <groupId>io.cucumber</groupId>
 	    <artifactId>cucumber-java</artifactId>
-	    <version>5.5.0</version>
+	    <version>4.2.0</version>
 	</dependency>
 	
 	<dependency>
 	    <groupId>io.cucumber</groupId>
 	    <artifactId>cucumber-junit</artifactId>
-	    <version>5.5.0</version>
+	    <version>4.2.0</version>
     </dependency>
     
 	<dependency>
 	    <groupId>org.seleniumhq.selenium</groupId>
 	    <artifactId>selenium-java</artifactId>
 	    <version>3.141.59</version>
+	</dependency>
+    
+
+	<dependency>
+	    <groupId>junit</groupId>
+	    <artifactId>junit</artifactId>
+	    <version>4.12</version>
+	
 	</dependency>
     
   </dependencies>

@@ -9,9 +9,10 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
-import io.cucumber.java.en.Given;
-import io.cucumber.java.en.Then;
-import io.cucumber.java.en.When;
+import cucumber.api.java.en.Given;
+import cucumber.api.java.en.Then;
+import cucumber.api.java.en.When;
+
 
 public class AddCustomerSteps {
 	
@@ -33,7 +34,7 @@ public class AddCustomerSteps {
 		
 	}
 
-	@When("Close the Pop up window")
+/*	@When("Close the Pop up window")
 	public void close_the_Pop_up_window() throws InterruptedException {
 		
 		Thread.sleep(5000);
@@ -41,7 +42,7 @@ public class AddCustomerSteps {
 	    WebElement FrameCloseBtn = d.findElement(By.xpath("//div[@id=\"closeBtn\"]"));
 	    FrameCloseBtn.click();
 	    d.switchTo().defaultContent();
-	}
+	} */
 
 	@When("Enter the customer fields")
 	public void enter_the_customer_fields() throws InterruptedException {
@@ -132,6 +133,19 @@ public class AddCustomerSteps {
 		d.findElement(By.id("email")).sendKeys(asMaps.get(1).get("mail"));
 		d.findElement(By.name("addr")).sendKeys(asMaps.get(3).get("address"));
 		d.findElement(By.id("telephoneno")).sendKeys(asMaps.get(1).get("phone"));
+	}
+	
+	@When("Enter the customer fields outline {string},{string},{string},{string},{string}")
+	public void enter_the_customer_fields_outline(String fname, String lname, String mail, String address, String phone) throws InterruptedException {
+
+		Thread.sleep(2000);
+	    
+		d.findElement(By.xpath("(//label[@for='done'])[1]")).click();
+		d.findElement(By.id("fname")).sendKeys(fname);
+		d.findElement(By.id("lname")).sendKeys(lname);
+		d.findElement(By.id("email")).sendKeys(mail);
+		d.findElement(By.name("addr")).sendKeys(address);
+		d.findElement(By.id("telephoneno")).sendKeys(phone);
 	}
 
 	@When("Click on submit button")
